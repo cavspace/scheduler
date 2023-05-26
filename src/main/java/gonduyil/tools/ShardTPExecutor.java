@@ -581,10 +581,13 @@ public class ShardTPExecutor extends AbstractExecutorService {
     }
 
 
+    /**
+     * init BlockingQueues
+     */
     private void initWorkQueueMap() {
         for (int i= 0; i < corePoolSize; i++) {
             workQueueMap.put(i, createQueue());
-            Worker worker = new Worker(i);
+            final Worker worker = new Worker(i);
 
             final Thread t = worker.thread;
             workers.add(worker);
